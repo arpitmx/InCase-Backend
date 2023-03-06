@@ -46,17 +46,18 @@ def shutdown():
     os.system("shutdown -h now")
 
 
-def notifyApp(msg,tone):
-    pusher_client.trigger('sexy-channel69', 'sexy-event', {"message": msg, "tone": tone})
+def notifyApp(message,priority,sender):
+    pusher_client.trigger('sexy-channel69', 'sexy-event', {"message": message, "priority": priority,"sender":sender})
 
 #https://88ca-2405-201-402d-7805-d063-72ab-e848-5413.in.ngrok.io/baachi/?mows=ring&?tone=1
 @app.route('/baachi/', methods=['GET'])
 def request_page():
-    user_query = str(request.args.get('mows'))
-    ringtone = str(request.args.get('tone'))
+    message = str(request.args.get('message'))
+    priority = str(request.args.get('priority'))
+    sender = str(request.args.get('sender'))
     # /user/?query=User_Name
 
-    print("User wrote : ",user_query)
+    print("User wrote : ",message)
     #data_set = {'Page': 'Request', 'Message': f'{result} ', 'Timestamp': time.time()}
     #json_dump = json.dumps(data_set)
     # webbrowser.open(result)
@@ -64,8 +65,8 @@ def request_page():
     #tapAll(result, keyboard)
     #start(result)
     #shutdown()
-    notifyApp(user_query,ringtone)
-    return f"baachi mows {user_query}"
+    notifyApp(message,priority,sender)
+    return f"baachi mows {message,priority,sender}"
 
 
 @app.route('/')

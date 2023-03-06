@@ -8,10 +8,9 @@ pusher_client = pusher.Pusher(
   ssl=True
 )
 
-pusher_client.\
-  trigger('sexy-channel69',
+pusher_client.trigger('sexy-channel69',
           'sexy-event',
-          {"message": "I am in need",
+          {"message": "Fuck me!",
            "priority": 1,
            "sender": "Arpit"
            })
